@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toonflix/widgets/button.dart';
+import 'package:toonflix/widgets/currency_card.dart';
 
 void main() {
   runApp(MyApp());
@@ -47,7 +48,7 @@ class MyApp extends StatelessWidget {
                 ],
               ),
               const SizedBox(
-                height: 100,
+                height: 70,
               ),
               Text(
                 'Total Balance',
@@ -86,7 +87,7 @@ class MyApp extends StatelessWidget {
                 ],
               ),
               const SizedBox(
-                height: 100,
+                height: 30,
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -112,72 +113,26 @@ class MyApp extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              // 지갑 박스
-              Container(
-                clipBehavior: Clip.hardEdge, //박스에서 넘어가는 부분은 다 자름
-                decoration: BoxDecoration(
-                  color: const Color(0xFF1F2123),
-                  borderRadius: BorderRadius.circular(25),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 30,
-                    horizontal: 30,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'Euro',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 32,
-                                fontWeight: FontWeight.w600),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            children: [
-                              const Text(
-                                '6 428',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                'EUR',
-                                style: TextStyle(
-                                  color: Colors.white.withOpacity(0.8),
-                                  fontSize: 20,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      Transform.scale(
-                        scale: 2.2,
-                        child: Transform.translate(
-                          offset: const Offset(8, 12),
-                          child: const Icon(
-                            Icons.euro_sharp,
-                            color: Colors.white,
-                            size: 90,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+              const CurrencyCard(
+                name: 'Euro',
+                code: 'Eur',
+                amount: '6 428',
+                icon: Icons.euro_rounded,
+                isInverted: false,
               ),
+              const CurrencyCard(
+                  name: 'Bitcoin',
+                  code: 'BTC',
+                  amount: '9 785',
+                  icon: Icons.currency_bitcoin,
+                  isInverted: true),
+              const CurrencyCard(
+                name: 'Dollar',
+                code: 'USD',
+                amount: '428',
+                icon: Icons.attach_money_outlined,
+                isInverted: false,
+              )
             ],
           ),
         ),
