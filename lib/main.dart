@@ -112,8 +112,9 @@ class MyApp extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
+              // 지갑 박스
               Container(
-                clipBehavior: Clip.hardEdge,
+                clipBehavior: Clip.hardEdge, //박스에서 넘어가는 부분은 다 자름
                 decoration: BoxDecoration(
                   color: const Color(0xFF1F2123),
                   borderRadius: BorderRadius.circular(25),
