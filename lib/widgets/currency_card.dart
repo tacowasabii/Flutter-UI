@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class CurrencyCard extends StatelessWidget {
   final String name, code, amount;
+  final double offsetY;
   final IconData icon;
   final bool isInverted;
 
@@ -12,6 +13,7 @@ class CurrencyCard extends StatelessWidget {
     required this.name,
     required this.code,
     required this.amount,
+    required this.offsetY,
     required this.icon,
     required this.isInverted,
   });
@@ -19,70 +21,73 @@ class CurrencyCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // 지갑 박스
-    return Container(
-      clipBehavior: Clip.hardEdge, //박스에서 넘어가는 부분은 다 자름
-      decoration: BoxDecoration(
-        color: isInverted ? Colors.white : _blackColor,
-        borderRadius: BorderRadius.circular(25),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: 30,
-          horizontal: 30,
+    return Transform.translate(
+      offset: Offset(0, offsetY),
+      child: Container(
+        clipBehavior: Clip.hardEdge, //박스에서 넘어가는 부분은 다 자름
+        decoration: BoxDecoration(
+          color: isInverted ? Colors.white : _blackColor,
+          borderRadius: BorderRadius.circular(25),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  name,
-                  style: TextStyle(
-                      color: isInverted ? _blackColor : Colors.white,
-                      fontSize: 32,
-                      fontWeight: FontWeight.w600),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  children: [
-                    Text(
-                      amount,
-                      style: TextStyle(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            vertical: 30,
+            horizontal: 30,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    name,
+                    style: TextStyle(
                         color: isInverted ? _blackColor : Colors.white,
-                        fontSize: 20,
+                        fontSize: 32,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        amount,
+                        style: TextStyle(
+                          color: isInverted ? _blackColor : Colors.white,
+                          fontSize: 20,
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      code,
-                      style: TextStyle(
-                        color: isInverted
-                            ? _blackColor
-                            : Colors.white.withOpacity(0.8),
-                        fontSize: 20,
+                      const SizedBox(
+                        width: 5,
                       ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            Transform.scale(
-              scale: 2.2,
-              child: Transform.translate(
-                offset: const Offset(8, 12),
-                child: Icon(
-                  icon,
-                  color: isInverted ? _blackColor : Colors.white,
-                  size: 90,
-                ),
+                      Text(
+                        code,
+                        style: TextStyle(
+                          color: isInverted
+                              ? _blackColor
+                              : Colors.white.withOpacity(0.8),
+                          fontSize: 20,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            )
-          ],
+              Transform.scale(
+                scale: 2.2,
+                child: Transform.translate(
+                  offset: const Offset(8, 12),
+                  child: Icon(
+                    icon,
+                    color: isInverted ? _blackColor : Colors.white,
+                    size: 90,
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
